@@ -16,7 +16,7 @@ spring:
   datasource:
     url: jdbc:mysql://120.76.210.31:3306/fred_platform?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     username: root
-    password: 1993ca52c7
+    password: xxxxxx
     driver-class-name: com.mysql.jdbc.Driver
 
     dbcp2:
@@ -36,7 +36,7 @@ spring.cache:
   # REDIS (RedisProperties)
 spring.redis :
     host : 120.76.210.31 # server host
-    password : password
+    password : xxxxxx
     port : 6379 # connection port
     pool.max-idle : 8 # pool settings ...
     pool.min-idle : 1
