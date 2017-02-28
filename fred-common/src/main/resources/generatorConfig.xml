@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="init.properties" />
+	<!-- 指定数据连接驱动jar地址 -->
+	<classPathEntry location="${classPath}" />
+	<!-- 一个数据库一个context -->
+	<context id="context1">
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="${jdbc_driver}"
+			connectionURL="${jdbc_url}" userId="${jdbc_user}" password="${jdbc_password}" />
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成实体类地址 -->
+		<javaModelGenerator targetPackage="com.jin.beans"
+			targetProject="src/main/java">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.fiberhome.model， true:com.fiberhome.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成mapxml文件 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.fiberhome.model， true:com.fiberhome.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- 生成mapxml对应client，也就是接口dao -->
+		<javaClientGenerator targetPackage="com.jin.dao"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.fiberhome.model， true:com.fiberhome.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 如果想要mapper配置文件加入sql的where条件查询, 可以将enableCountByExample等设为true, 这样就会生成一个对应domainObjectName的Example类, 
+			enableCountByExample等设为false时, 就不会生成对应的Example类了 -->
+		<table schema="${jdbc_user}" tableName="RESOURCE_TYPE"
+			domainObjectName="ResourceType" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+			<!-- 忽略字段 <ignoreColumn column="FRED" /> -->
+			<!-- 字段属性重命名, java类型, jdbc数据库类型指定 <columnOverride column="user_id" property="sysUserid" 
+				javaType="String"/> -->
+		</table>
+
+		<table schema="${jdbc_user}" tableName="REGION"
+			domainObjectName="Region" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		
+		<!--  -->
+		<table tableName="%" enableCountByExample="false" enableDeleteByExample="false"
+    	   enableUpdateByExample="false" selectByPrimaryKeyQueryId="false" 
+           selectByExampleQueryId="false" enableSelectByExample="false" modelType="flat">
+      		<property name="useActualColumnNames" value="true"/>
+    	</table>
+
+	</context>
+</generatorConfiguration>

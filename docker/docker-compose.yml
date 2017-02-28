@@ -1,0 +1,41 @@
+hystrix:
+  image: 21jhf/fred-hystrix-dashboard
+  ports:
+   - "7979:7979"
+  links:
+   - gateway
+   - discovery
+   
+discovery:
+  image: 21jhf/fred-eureka-server
+  ports:
+   - "8761:8761"
+   
+configserver:
+  image: 21jhf/fred-config
+  ports:
+   - "8888:8888"
+  links:
+   - discovery
+   
+gateway:
+  image: 21jhf/fred-api-gateway
+  ports:
+   - "10000:10000"
+  links:
+   - discovery
+   - configserver
+   - user
+   - common
+   
+user:
+  image: 21jhf/fred-user
+  links:
+   - discovery
+   - configserver
+      
+common:
+  image: 21jhf/fred-common
+  links:
+   - discovery
+   - configserver

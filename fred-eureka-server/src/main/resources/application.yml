@@ -1,0 +1,19 @@
+server:
+  port: 8761
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: password123
+    
+eureka:
+  instance:
+    hostname: discovery
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://admin:password123@discovery:${server.port}/eureka
+      
+spring.cloud.config.discovery.enabled: true
